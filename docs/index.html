@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width">
+		<meta name="description" content="Speech Phrase Counter は音声入力した文章に特定のフレーズが何回使われているかカウントします">
+
+		<title>Speech Phrase Counter</title>
+
+		<link rel="stylesheet" href="style.css">
+		<!--[if lt IE 9]>
+			<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+		<h1>Speech Phrase Counter</h1>
+
+		<div>
+			<p>カウントするフレーズを入力してください。<br>（複数ある場合はフレーズ毎に改行して入力）</p>
+			<textarea id="phrase"></textarea>
+		</div>
+
+		<div>
+			<p>結果の区切り文字を選択してください。</p>
+			<label><input type="radio" name="delimiter" value="csv" checked>カンマ</label>
+			<label><input type="radio" name="delimiter" value="tsv">タブ</label>
+		</div>
+
+		<div>
+			<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDk2IDk2IiBoZWlnaHQ9Ijk2cHgiIGlkPSJhcnJvd19kb3duIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA5NiA5NiIgd2lkdGg9Ijk2cHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik00NCwxMnY2Mi4zNDRMMjIuNTQzLDUyLjg4OGMtMS41NjEtMS41NjItNC4wOTQtMS41NjItNS42NTYtMC4wMDFjLTEuNTYyLDEuNTYyLTEuNTYyLDQuMDk2LDAsNS42NThsMjguMjg0LDI4LjI4M2wwLDAgIGMwLjE4NiwwLjE4NiwwLjM5MSwwLjM1MiwwLjYwOSwwLjQ5OGMwLjEwMSwwLjA2NywwLjIxLDAuMTE0LDAuMzE1LDAuMTcyYzAuMTI0LDAuMDY2LDAuMjQyLDAuMTQyLDAuMzczLDAuMTk1ICBjMC4xMzUsMC4wNTcsMC4yNzUsMC4wODksMC40MTUsMC4xMjljMC4xMTEsMC4wMzMsMC4yMTYsMC4wNzYsMC4zMzEsMC4wOTlDNDcuNDc0LDg3Ljk3Myw0Ny43MzcsODgsNDgsODhsMCwwICBjMC4wMDMsMCwwLjAwNi0wLjAwMSwwLjAwOS0wLjAwMWMwLjI1OS0wLjAwMSwwLjUxOS0wLjAyNywwLjc3NC0wLjA3OGMwLjEyLTAuMDI0LDAuMjMxLTAuMDY5LDAuMzQ4LTAuMTA0ICBjMC4xMzMtMC4wMzksMC4yNjgtMC4wNjksMC4zOTctMC4xMjNjMC4xMzktMC4wNTgsMC4yNjUtMC4xMzYsMC4zOTYtMC4yMDhjMC4wOTgtMC4wNTQsMC4xOTgtMC4wOTcsMC4yOTItMC4xNTkgIGMwLjIyMS0wLjE0NiwwLjQyNy0wLjMxNCwwLjYxNC0wLjUwMWwyOC4yODEtMjguMjgyYzEuNTYyLTEuNTYyLDEuNTYyLTQuMDk1LDAuMDAxLTUuNjU3Yy0xLjU2Mi0xLjU2Mi00LjA5NS0xLjU2Mi01LjY1NywwICBMNTIsNzQuMzQzVjEyYzAtMi4yMDktMS43OTEtNC00LTRTNDQsOS43OTEsNDQsMTJ6Ii8+PC9zdmc+" width="32" height="32">
+		</div>
+
+		<button>文章を音声入力する</button>
+
+		<div>
+			<img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDk2IDk2IiBoZWlnaHQ9Ijk2cHgiIGlkPSJhcnJvd19kb3duIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA5NiA5NiIgd2lkdGg9Ijk2cHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxwYXRoIGQ9Ik00NCwxMnY2Mi4zNDRMMjIuNTQzLDUyLjg4OGMtMS41NjEtMS41NjItNC4wOTQtMS41NjItNS42NTYtMC4wMDFjLTEuNTYyLDEuNTYyLTEuNTYyLDQuMDk2LDAsNS42NThsMjguMjg0LDI4LjI4M2wwLDAgIGMwLjE4NiwwLjE4NiwwLjM5MSwwLjM1MiwwLjYwOSwwLjQ5OGMwLjEwMSwwLjA2NywwLjIxLDAuMTE0LDAuMzE1LDAuMTcyYzAuMTI0LDAuMDY2LDAuMjQyLDAuMTQyLDAuMzczLDAuMTk1ICBjMC4xMzUsMC4wNTcsMC4yNzUsMC4wODksMC40MTUsMC4xMjljMC4xMTEsMC4wMzMsMC4yMTYsMC4wNzYsMC4zMzEsMC4wOTlDNDcuNDc0LDg3Ljk3Myw0Ny43MzcsODgsNDgsODhsMCwwICBjMC4wMDMsMCwwLjAwNi0wLjAwMSwwLjAwOS0wLjAwMWMwLjI1OS0wLjAwMSwwLjUxOS0wLjAyNywwLjc3NC0wLjA3OGMwLjEyLTAuMDI0LDAuMjMxLTAuMDY5LDAuMzQ4LTAuMTA0ICBjMC4xMzMtMC4wMzksMC4yNjgtMC4wNjksMC4zOTctMC4xMjNjMC4xMzktMC4wNTgsMC4yNjUtMC4xMzYsMC4zOTYtMC4yMDhjMC4wOTgtMC4wNTQsMC4xOTgtMC4wOTcsMC4yOTItMC4xNTkgIGMwLjIyMS0wLjE0NiwwLjQyNy0wLjMxNCwwLjYxNC0wLjUwMWwyOC4yODEtMjguMjgyYzEuNTYyLTEuNTYyLDEuNTYyLTQuMDk1LDAuMDAxLTUuNjU3Yy0xLjU2Mi0xLjU2Mi00LjA5NS0xLjU2Mi01LjY1NywwICBMNTIsNzQuMzQzVjEyYzAtMi4yMDktMS43OTEtNC00LTRTNDQsOS43OTEsNDQsMTJ6Ii8+PC9zdmc+" width="32" height="32">
+		</div>
+
+		<div>
+			<p>音声入力された文章</p>
+			<textarea id="sentence"></textarea>
+		</div>
+
+		<div>
+			<p>文章に含まれるフレーズの数</p>
+			<textarea id="result"></textarea>
+		</div>
+
+		<script src="script.js"></script>
+	</body>
+</html>

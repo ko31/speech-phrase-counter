@@ -1,0 +1,45 @@
+body, html {
+  margin: 0;
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  height: inherit;
+/*
+  overflow: hidden;
+*/
+}
+
+h1, div, p {
+  text-align: center;
+}
+
+div {
+  margin: 10px;
+}
+
+textarea {
+  width: 400px;
+  height: 80px;
+  font-size: 1rem;
+}
+
+button {
+  margin: 0 auto;
+  display: block;
+  font-size: 1.1rem;
+  width: 300px;
+  line-height: 3;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background: #cccccc;
+  transition: .5s;
+  cursor: pointer;
+}
+
+button:hover {
+  background: #eeeeee;
+}
